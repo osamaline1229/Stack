@@ -7,61 +7,62 @@ using System.Threading.Tasks;
 
 namespace Stack
 {
-    internal class Queue
+    class Stack
     {
-        private int[] queue;
-        private int first;
-
-        public Queue(int n)
+        private int[] ele;
+        private int top;
+        private int max;
+        public Stack(int size)
         {
-            this.queue = new int[n];
-            first = -1;
+            ele = new int[size];
+            top = -1;
+            max = size;
         }
 
-
-
-
-
-
-        //public static void printStackvalue(IEnumerable myCollection)
-        //{
-        //    foreach (var i in myCollection)
-        //    {
-        //        Console.WriteLine(i);
-        //    }
-
-        //    Console.WriteLine();
-        //}
-        public void Enqueue(int number)
+        public void push(int item)
         {
-            if (IsFull())
+            if (top == max - 1)
             {
-                Console.WriteLine("Stack is full");
+                Console.WriteLine("Stack Overflow");
                 return;
             }
-            //top++
-            queue[++first] = number;
-
-        }
-
-        public int peek()
-        {
-            if (IsEmpty())
+            else
             {
-                Console.WriteLine("Stack is empty");
+                ele[++top] = item;
             }
-            return queue[first];
         }
 
-        private bool IsEmpty()
+        public int pop()
         {
-            return first == 0;
+            if (top == -1)
+            {
+                Console.WriteLine("Stack Underflow");
+                return -1;
+            }
+            else
+            {
+                Console.WriteLine("Poped element is: " + ele[top]);
+                return ele[top--];
+            }
         }
-        private bool IsFull()
+
+        public void printStack()
         {
-            return first >= queue.Length - 1;
+            if (top == -1)
+            {
+                Console.WriteLine("Stack is Empty");
+                return;
+            }
+            else
+            {
+                for (int i = 0; i <= top; i++)
+                {
+                    Console.WriteLine("Item[" + (i + 1) + "]: " + ele[i]);
+                }
+            }
         }
+
+
+
     }
-    
-
 }
