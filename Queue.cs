@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Stack
 {
-    internal class Stack
+    internal class Queue
     {
-        private int[] stack;
-        private int top;
+        private int[] queue;
+        private int first;
 
-        public Stack(int n)
+        public Queue(int n)
         {
-            this.stack = new int[n];
-            top = -1;
+            this.queue = new int[n];
+            first = -1;
         }
 
 
@@ -32,7 +32,7 @@ namespace Stack
 
         //    Console.WriteLine();
         //}
-        public void push(int number)
+        public void Enqueue(int number)
         {
             if (IsFull())
             {
@@ -40,7 +40,7 @@ namespace Stack
                 return;
             }
             //top++
-            stack[++top] = number;
+            queue[++first] = number;
 
         }
 
@@ -50,16 +50,16 @@ namespace Stack
             {
                 Console.WriteLine("Stack is empty");
             }
-            return stack[top];
+            return queue[first];
         }
 
         private bool IsEmpty()
         {
-            return top == -1;
+            return first == 0;
         }
         private bool IsFull()
         {
-            return top >= stack.Length - 1;
+            return first >= queue.Length - 1;
         }
     }
     
